@@ -1,0 +1,44 @@
+<section>
+    <h1>Players</h1>
+    <div class="container">
+        <div class="interior">
+            <a class="btn" (click)="newPlayer()">New Player</a>
+        </div>
+    </div>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Position</th>
+                    <th>Weight</th>
+                    <th>Height</th>
+                    <th>Nationality</th>
+                    <th>Left Footed</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div>
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>            
+                <tr *ngFor="let player of (players$ | async)">
+                    <td>{{player.name}}</td>
+                    <td>{{player.lastName}}</td>
+                    <td>{{player.position}}</td>
+                    <td>{{player.weight}}</td>
+                    <td>{{player.height}}</td>
+                    <td>{{player.nationality}}</td>
+                    <td>{{player.leftFooted}}</td>
+                    <td>
+                        <button class="submit" (click)="editPlayer(player)">Edit</button>
+                        <button class="submit" (click)="deletePlayer(player)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<app-player-dialog *ngIf="showModal" [player]="selectedPlayer!" (closeDialog)="closeDialog()"></app-player-dialog>
